@@ -4,26 +4,54 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    private Rigidbody2D rb;
+    private Animator animator;
+    private float dirX;
+    private SpriteRenderer sp;
+
+    public float movementSpeed = 7f;
+    public float jumpStrength = 11f;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        sp = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.D))
+        dirX = Input.GetAxisRaw("Horizontal");
+        rb.velocity = new Vector2(dirX * movementSpeed, rb.velocity.y);
+
+        if(Input.GetButtonDown("Jump"))
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector3(3, 0, 0);
+            rb.velocity = new Vector2(rb.velocity.x, jumpStrength);
         }
-        else if (Input.GetKeyDown("space"))
+
+        AnimationUpdate();
+
+
+    }
+
+    private void AnimationUpdate()
+    {
+        if (dirX > 0f)
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector3(0, 11, 0);
+            animator.SetBool("Running", true);
+            sp.flipX = false;
         }
-        else if (Input.GetKey(KeyCode.A))
-        {           
-            GetComponent<Rigidbody2D>().velocity = new Vector3(-3,0 , 0);
+        else if (dirX < 0f)
+        {
+            animator.SetBool("Running", true);
+            sp.flipX = true;
+        }
+        else
+        {
+            animator.SetBool("Running", false);
         }
     }
 }
