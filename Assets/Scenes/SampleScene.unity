@@ -5935,7 +5935,8 @@ GameObject:
   - component: {fileID: 743486379}
   - component: {fileID: 743486381}
   - component: {fileID: 743486380}
-  m_Layer: 0
+  - component: {fileID: 743486382}
+  m_Layer: 6
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5950,7 +5951,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 743486375}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.02, y: 0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 316301361}
@@ -7173,6 +7174,12 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 6a244d01588d5564498f3af1dc1f6433, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: ad5315fdc9730e84b9d91fde70b70b86, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileSpriteArray:
   - m_RefCount: 1
     m_Data: {fileID: -3912100822870045097, guid: 413986c4a668c374d8de72a47621b531, type: 3}
@@ -7192,6 +7199,12 @@ Tilemap:
     m_Data: {fileID: 1959242234642493429, guid: 413986c4a668c374d8de72a47621b531, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 1267343245607864193, guid: 413986c4a668c374d8de72a47621b531, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileMatrixArray:
   - m_RefCount: 114
     m_Data:
@@ -7265,7 +7278,7 @@ CompositeCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
@@ -7274,23 +7287,7 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 743486379}
     m_ColliderPaths:
-    - - X: -100000041
-        Y: -30000100
-      - X: -100000000
-        Y: -30000100
-      - X: -100000000
-        Y: -39999900
-      - X: -100000041
-        Y: -39999900
-      - X: -100000100
-        Y: -39999959
-      - X: -100000100
-        Y: -60000041
-      - X: -100000041
-        Y: -60000100
-      - X: 200000041
-        Y: -60000100
-      - X: 200000100
+    - - X: 200000100
         Y: -60000041
       - X: 200000100
         Y: -39999959
@@ -7328,6 +7325,22 @@ CompositeCollider2D:
         Y: 20000041
       - X: -100000100
         Y: -30000041
+      - X: -100000041
+        Y: -30000100
+      - X: -100000000
+        Y: -30000100
+      - X: -100000000
+        Y: -39999900
+      - X: -100000041
+        Y: -39999900
+      - X: -100000100
+        Y: -39999959
+      - X: -100000100
+        Y: -60000041
+      - X: -100000041
+        Y: -60000100
+      - X: 200000041
+        Y: -60000100
   m_CompositePaths:
     m_Paths:
     - - {x: 19.999975, y: -6.00001}
@@ -7365,6 +7378,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!251 &743486382
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743486375}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 1
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &782845150
 GameObject:
   m_ObjectHideFlags: 0
@@ -7512,6 +7544,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 7
   jumpStrength: 11
+  jumpableGround:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!95 &782845156
 Animator:
   serializedVersion: 3

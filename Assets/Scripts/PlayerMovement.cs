@@ -9,9 +9,11 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private float dirX;
     private SpriteRenderer sp;
+    private BoxCollider2D bc;
 
     public float movementSpeed = 7f;
     public float jumpStrength = 11f;
+    [SerializeField] private LayerMask jumpableGround;
 
     private enum MovementState { idle, running, jumping, falling };
 
@@ -21,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         sp = GetComponent<SpriteRenderer>();
+        bc = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -29,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
         dirX = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(dirX * movementSpeed, rb.velocity.y);
 
-        if(Input.GetButtonDown("Jump"))
+        if(Input.GetButtonDown("Jump") && CanJump())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpStrength);
         }
@@ -68,5 +71,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         animator.SetInteger("movementState", (int)state);
+    }
+
+    private bool CanJump()
+    {
+        return Physics2D.BoxCast(bc.bounds.center, bc.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
     }
 }
