@@ -13,9 +13,7 @@ public class ItemCollect : MonoBehaviour
         if (collision.tag == "Player")
         {
             stats = collision.GetComponent<PlayerStats>();
-            stats.points += itemPoints;
-            Debug.Log(stats.points);
-            stats.pointsText.text = "Points: " + stats.points;
+            stats.CollectedPoints(itemPoints);
             Destroy(this.gameObject);
         }
     }
